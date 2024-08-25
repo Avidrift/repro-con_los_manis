@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuario</title>
+    <script defer src="static/pyscript.js"></script>
+    <style>
+        .container {
+            text-align: center;
+            border: 1px solid black;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encuesta de Satisfacción</h1> <br> 
+        <form id="encuesta-form">
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br><br><br><br>
+            <label></label>
+            <label for="respuesta">Respuesta:</label><br>
+            <input type="text" id="respuesta" name="respuesta" required><br><br>
+            <button type="submit">Enviar</button><br>
+        </form>
+        <script type="text/python">
+            import json
+
+            def enviar_respuesta(event):
+                event.preventDefault()
+                nombre = Element("nombre").value
+                respuesta = Element("respuesta").value
+                with open('datos.json', 'r') as f:
+                    datos = json.load(f)
+                    if nombre not in datos['respuestas']:
+                        datos['respuestas'][nombre] = []
+                    datos['respuestas'][nombre].append(respuesta)
+                with open('datos.json', 'w') as f:
+                    json.dump(datos, f)
+                alert("Respuesta enviada")
+
+            form = Element("encuesta-form")
+            form.onsubmit = enviar_respuesta
+        </script>
+        <a href="http://localhost/SolucionReto/index.html"><button> Terminar </button></a>
+    </div>
+</body>
+</html>
