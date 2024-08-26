@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <script defer src="static/pyscript.js"></script>
+    <style>
+        .container {
+            text-align: center;
+            border: 1px solid black;
+            padding: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo del Hub de Invovacion">
+            <h2 class="nombre-empresa"></h2>
+        </div>
+        <nav>
+            <a href="https://www.google.com" class="nav-link"><button>Salir Del Programa</button></a>
+        </nav>
+    </header>
+    <br>
+    <div class="container">
+        <h1>Encuestas de Satisfacción</h1>
+        <div id="encuestas"></div>
+        <canvas id="grafico" width="400" height="200"></canvas>
+        <script type="text/python">
+            import json
+            from js import document, console
+
+            def cargar_encuestas():
+                with open('datos.json', 'r') as f:
+                    datos = json.load(f)
+                    encuestas = datos['encuestas']
+                    respuestas = datos['respuestas']
+                    mostrar_encuestas(encuestas, respuestas)
+                    mostrar_grafico(respuestas)
+
+            def mostrar_encuestas(encuestas, respuestas):
+                encuestas_div = document.getElementById("encuestas")
+                encuestas_div.innerHTML = ""  # Limpiar contenido previo
+                for encuesta in encuestas:
+                    encuesta_div = document.createElement("div")
+                    encuesta_div.innerHTML = f"<h2>{encuesta}</h2>"
+                    for nombre, respuesta in respuestas.items():
+                        respuesta_div = document.createElement("div")
+                        respuesta_div.innerHTML = f"<p>{nombre}: {respuesta}</p>"
+                        encuesta_div.appendChild(respuesta_div)
+                    encuestas_div.appendChild(encuesta_div)
+
+            def mostrar_grafico(respuestas):
+                from js import Chart
+
+                nombres = list(respuestas.keys())
+                conteo_respuestas = [len(respuestas[nombre]) for nombre in nombres]
+
+                ctx = document.getElementById('grafico').getContext('2d')
+                chart = Chart.new(ctx, {
+                    'type': 'bar',
+                    'data': {
+                        'labels': nombres,
+                        'datasets': [{
+                            'label': 'Número de Respuestas',
+                            'data': conteo_respuestas,
+                            'backgroundColor': 'rgba(54, 162, 235, 0.2)',
+                            'borderColor': 'rgba(54, 162, 235, 1)',
+                            'borderWidth': 1
+                        }]
+                    },
+                    'options': {
+                        'scales': {
+                            'y': {
+                                'beginAtZero': True
+                            }
+                        }
+                    }
+                })
+
+            cargar_encuestas()
+        </script>
+    </div>
+</body>
+</html>

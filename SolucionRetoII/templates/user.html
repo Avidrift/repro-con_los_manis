@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuario</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="static/pyscript.js"></script>
+    <style>
+        .container {
+            text-align: center;
+            border: 1px solid black;
+            padding: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo del Hub de Invovacion">
+            <h2 class="nombre-empresa"></h2>
+        </div>
+        <nav>
+            <a href="https://www.google.com" class="nav-link"><button>Salir Del Programa</button></a>
+        </nav>
+    </header><br>
+    <div class="container">
+        <h1>Encuesta de Satisfacción</h1> <br> 
+        <form id="encuesta-form" action="datos_a_guardar.js">
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombre" name="nombre" required><br><br><br><br>
+            <b><label>Eri gae?</label></b><br><br>
+            <label for="respuesta">Respuesta:</label><br>
+            <input type="text" id="respuesta" name="respuesta" required><br><br>
+            <button onclick="getInput()" id="Enviar">Enviar</button><br>
+        </form>
+        <py-script>
+            def getInput():
+                user_name = Element("nombre").element.value
+                user_input = Element("respuesta").element.value
+
+        </py-script>
+        
+        <a href="http://localhost/SolucionReto/index.html"><button> Terminar </button></a>
+    </div>
+</body>
+</html>
