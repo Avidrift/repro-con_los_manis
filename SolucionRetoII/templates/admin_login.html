@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Administrador</title>
+</head>
+<body>
+    <h1>Login Administrador</h1>
+    <form id="loginForm">
+        <label for="password">Contraseña:</label>
+        <input type="password" name="password" id="password">
+        <button type="submit">Entrar</button>
+    </form>
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <py-script>
+        from js import document, fetch
+
+        async def login(event):
+            event.preventDefault()
+            password = document.getElementById('password').value
+            response = await fetch('/admin', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({'password': password})
+            })
+            if response.status == 200:
+                data = await response.json()
+                # Redirigir a la página de administrador
+                window.location.href = '/admin_dashboard.html'
+            else:
+                alert('Contraseña incorrecta')
+
+        document.getElementById('loginForm').addEventListener('submit', login)
+    </py-script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados</title>
+</head>
+<body>
+    <h1>Resultados de la Encuesta: {{ encuesta.titulo }}</h1>
+    <ul id="respuestasList"></ul>
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <py-script>
+        from js import document
+
+        respuestasList = document.getElementById('respuestasList')
+        respuestas_html = '{% for respuesta in respuestas %}'
+        respuestasList.innerHTML = respuestas_html
+    </py-script>
+</body>
+</html>
