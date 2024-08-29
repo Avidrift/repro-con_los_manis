@@ -1,0 +1,30 @@
+
+body{
+    font-family: sans-serif;
+    margin: 2;
+}
+
+header{
+    display: flex;
+    height: 9px;
+    background-color:  rgb(233, 230, 230);
+    justify-content: space-between;
+    align-items: center;
+    padding: 70px;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo{
+    height: 50px;
+}
+
+.logo_express{
+    display: flex;
+    align-items: center;
+    height: 4px;
+}
+

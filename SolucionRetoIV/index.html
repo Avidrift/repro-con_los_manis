@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-image: url('templates/fonfito.png');
+            /* background-size: cover; */
+            /* background-repeat: no-repeat; */
+            /* background-attachment: fixed; */
+        }
+        .container {
+            text-align: center;
+            border: 1px solid rgb(141, 140, 140);
+            padding: 50px;
+            width: 900px; /* Ancho del formulario */
+            height: auto; /* Altura del formulario */
+            margin: 0 auto;
+            background-color: rgb(233, 230, 230);
+        }
+        .botones {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .botones button {
+            margin: 0 10px; /* Espacio entre los botones */
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo del Hub de Invovacion">
+            <h2 class="nombre-empresa"></h2>
+        </div>
+        <nav>
+            <a href="https://www.google.com" class="nav-link"><button>Salir Del Programa</button></a>
+        </nav>
+    </header><br>
+
+    <div class ="container">
+        <h1>Bienvenido</h1><br><br>
+        <label>Elige el modo</label><br><br>
+        <a href="http://localhost/SolucionRetoII/templates/admin.php"><button> Modo Administrador </button></a>
+        <a href="templates/user.php"><button> Modo Usuario </button></a>
+    </div>
+</body>
+</html>
